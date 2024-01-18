@@ -46,12 +46,15 @@ const handleRemoveFromWatchlist = async (movieId: number) => {
 
 <template>
   <Card>
-    <CardContent class="flex aspect-square items-center justify-center p-0 relative">
-      <img :src="`https://image.tmdb.org/t/p/original/${data.poster_path}`" alt="" />
+    <RouterLink :to="`/movies/${data.id}`">
+      <CardContent class="flex aspect-square items-center justify-center p-0 relative">
+        <img :src="`https://image.tmdb.org/t/p/original/${data.poster_path}`" alt="" />
 
-      <!-- image backdrop -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-    </CardContent>
+        <!-- image backdrop -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
+        ></div> </CardContent
+    ></RouterLink>
 
     <!-- card footer -->
     <CardFooter class="px-2 py-4">

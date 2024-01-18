@@ -46,20 +46,22 @@ const handleAddToWatchlist = async (movieId: number) => {
 
 <template>
   <Card>
-    <CardContent class="flex aspect-square items-center justify-center p-0 relative">
-      <img :src="`https://image.tmdb.org/t/p/original/${data.poster_path}`" alt="" />
+    <RouterLink :to="`/movies/${data.id}`">
+      <CardContent class="flex aspect-square items-center justify-center p-0 relative">
+        <img :src="`https://image.tmdb.org/t/p/original/${data.poster_path}`" alt="" />
 
-      <!-- image backdrop -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <!-- image backdrop -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 
-      <!-- recommended badge -->
-      <div
-        class="absolute top-0 left-0 z-10 bg-[#42b883] px-2 py-2 flex items-center"
-        v-if="data.vote_average > 8 && data.vote_count > 1000"
-      >
-        <span class="text-white text-xs font-semibold"> Recommended </span>
-      </div>
-    </CardContent>
+        <!-- recommended badge -->
+        <div
+          class="absolute top-0 left-0 z-10 bg-[#42b883] px-2 py-2 flex items-center"
+          v-if="data.vote_average > 8 && data.vote_count > 1000"
+        >
+          <span class="text-white text-xs font-semibold"> Recommended </span>
+        </div>
+      </CardContent>
+    </RouterLink>
 
     <!-- card footer -->
     <CardFooter class="px-3 py-4">

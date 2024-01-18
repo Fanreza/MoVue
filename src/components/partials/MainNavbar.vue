@@ -9,15 +9,15 @@ const listLink = [
   },
   {
     name: 'Movie',
-    path: '/movie'
+    path: '/movies'
   },
   {
     name: 'TV Show',
-    path: '/tv-show'
+    path: '/tv-shows'
   },
   {
     name: 'Genre',
-    path: '/genre'
+    path: '/genres'
   }
 ]
 </script>
@@ -54,6 +54,10 @@ const listLink = [
 
 <style scoped lang="postcss">
 .router-link-exact-active {
+  @apply text-[#42b883] font-bold;
+}
+
+.router-link-active {
   @apply text-[#42b883] font-bold;
 }
 </style>

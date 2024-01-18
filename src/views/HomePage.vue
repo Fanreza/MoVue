@@ -92,7 +92,7 @@ onMounted(() => {
         title="Popular TV Show"
         endpoint="/movies?filter=popular"
         :data-list="dataTvs"
-        @add-to-watchlist="getMovieWatchlist"
+        @add-to-watchlist="getTvWatchlist"
       />
     </div>
   </div>
