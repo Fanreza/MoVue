@@ -26,7 +26,9 @@ const listLink = [
   <nav class="bg-[#020817] border-b border-white/15 py-4">
     <div class="navbar flex items-center justify-between w-[50%] mx-auto gap-x-10">
       <div class="logo flex-grow">
-        <img src="/logo.png" alt="" class="w-11" />
+        <RouterLink to="/">
+          <img src="/logo.png" alt="" class="w-11" />
+        </RouterLink>
       </div>
 
       <div class="nav-list">

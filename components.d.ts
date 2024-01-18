@@ -45,6 +45,7 @@ declare module 'vue' {
     MovieWatchlistCarousel: typeof import('./src/components/partials/movie/MovieWatchlistCarousel.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchCard: typeof import('./src/components/partials/search/SearchCard.vue')['default']
     Tooltip: typeof import('./src/components/ui/tooltip/Tooltip.vue')['default']
     TooltipContent: typeof import('./src/components/ui/tooltip/TooltipContent.vue')['default']
     TooltipProvider: typeof import('./src/components/ui/tooltip/TooltipProvider.vue')['default']

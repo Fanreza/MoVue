@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { WatchlistDataModel } from '@/models/movieWatchlist.model'
+import type { MovieWatchlistDataModel } from '@/models/movieWatchlist.model'
 
 const props = defineProps<{
   title?: string
   endpoint?: string
-  dataList: WatchlistDataModel[]
+  dataList: MovieWatchlistDataModel[]
 }>()
 
 const emit = defineEmits<{

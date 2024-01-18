@@ -66,7 +66,6 @@ onMounted(() => {
     <div class="mt-20">
       <MovieWatchlistCarousel
         title="My Movie Watchlist"
-        endpoint="/movies?filter=popular"
         :data-list="dataMovieWatchlist"
         @remove-from-watchlist="getMovieWatchlist"
       />
@@ -74,7 +73,6 @@ onMounted(() => {
     <div class="mt-20">
       <TvWatchlistCarousel
         title="My TV Watchlist"
-        endpoint="/movies?filter=popular"
         :data-list="dataTvWatchlist"
         @remove-from-watchlist="getTvWatchlist"
       />
@@ -82,7 +80,7 @@ onMounted(() => {
     <div class="mt-20">
       <MovieCarousel
         title="Popular Movies"
-        endpoint="/movies?filter=popular"
+        endpoint="/movies"
         :data-list="dataMovies"
         @add-to-watchlist="getMovieWatchlist"
       />
@@ -90,7 +88,7 @@ onMounted(() => {
     <div class="mt-20">
       <TvCarousel
         title="Popular TV Show"
-        endpoint="/movies?filter=popular"
+        endpoint="/tv-shows"
         :data-list="dataTvs"
         @add-to-watchlist="getTvWatchlist"
       />

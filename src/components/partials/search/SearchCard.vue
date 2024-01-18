@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { TvDataModel } from '@/models/tv.model'
+import type { SearchDataModel } from '@/models/search.model'
 import { Icon } from '@iconify/vue'
 import { useAuthStores } from '@/stores/auth.stores'
 import { toast } from 'vue-sonner'
 
 const props = defineProps<{
-  data: TvDataModel
+  data: SearchDataModel
 }>()
 
 const emit = defineEmits<{
@@ -23,7 +23,7 @@ const handleAddToWatchlist = async (movieId: number) => {
   try {
     toast.promise(
       useHttp.post(`/account/${authStore.authData?.id}/watchlist`, {
-        media_type: 'tv',
+        media_type: 'movie',
         media_id: movieId,
         watchlist: true
       }),
@@ -42,13 +42,36 @@ const handleAddToWatchlist = async (movieId: number) => {
     onLoadingWatchlist.value = false
   }
 }
+
+const handleRoute = (mediaType: string) => {
+  if (mediaType === 'movie') {
+    return `/movies/${props.data.id}`
+  } else if (mediaType === 'tv') {
+    return `/tv-shows/${props.data.id}`
+  } else {
+    return `/people/${props.data.id}`
+  }
+}
+
+const handleMedia = (mediaType: string) => {
+  if (mediaType === 'movie') {
+    return 'Movie'
+  } else if (mediaType === 'tv') {
+    return 'TV Show'
+  } else {
+    return 'People'
+  }
+}
 </script>
 
 <template>
   <Card>
-    <RouterLink :to="`/tv-shows/${data.id}`">
+    <RouterLink :to="handleRoute(data.media_type)">
       <CardContent class="flex aspect-square items-center justify-center p-0 relative">
-        <img :src="`https://image.tmdb.org/t/p/original/${data.poster_path}`" alt="" />
+        <img
+          :src="`https://image.tmdb.org/t/p/original/${data.poster_path || data.profile_path}`"
+          alt=""
+        />
 
         <!-- image backdrop -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -56,7 +79,9 @@ const handleAddToWatchlist = async (movieId: number) => {
         <!-- recommended badge -->
         <div
           class="absolute top-0 left-0 z-10 bg-[#42b883] px-2 py-2 flex items-center"
-          v-if="data.vote_average > 8 && data.vote_count > 1000"
+          v-if="
+            data.vote_average && data.vote_count && data.vote_average > 8 && data.vote_count > 1000
+          "
         >
           <span class="text-white text-xs font-semibold"> Recommended </span>
         </div>
@@ -64,11 +89,11 @@ const handleAddToWatchlist = async (movieId: number) => {
     </RouterLink>
 
     <!-- card footer -->
-    <CardFooter class="px-2 py-4">
+    <CardFooter class="px-3 py-4">
       <div class="flex justify-between items-center mt-5">
         <div class="details flex flex-col w-[80%]">
-          <h3 class="text-sm font-semibold truncate">{{ data.original_name }}</h3>
-          <p class="text-xs text-gray-400">{{ data.first_air_date }}</p>
+          <h3 class="text-sm font-semibold truncate">{{ data.name || data.title }}</h3>
+          <p class="text-xs text-gray-400">{{ data.release_date || data.first_air_date }}</p>
         </div>
 
         <div class="menu">
@@ -83,7 +108,10 @@ const handleAddToWatchlist = async (movieId: number) => {
             </template>
 
             <template #menu-content>
-              <MenubarItem @select="handleAddToWatchlist(data.id)" class="cursor-pointer"
+              <MenubarItem
+                v-if="data.media_type === 'movie' || data.media_type === 'tv'"
+                @select="handleAddToWatchlist(data.id)"
+                class="cursor-pointer"
                 >Add to Watchlist</MenubarItem
               >
               <MenubarItem class="opacity-50">
