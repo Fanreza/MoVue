@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 
-import type { MovieDataModel } from '@/models/movie.model'
+import type { WatchlistDataModel } from '@/models/watchlist.model'
 
 const props = defineProps<{
   title?: string
   endpoint?: string
-  dataList: MovieDataModel[]
+  dataList: WatchlistDataModel[]
 }>()
 </script>
 
@@ -22,14 +22,29 @@ const props = defineProps<{
       </div>
     </div>
 
-    <Carousel class="relative w-full max-w-[100%] mx-auto mt-5">
+    <Carousel
+      class="relative w-full max-w-[100%] mx-auto mt-5"
+      :opts="{
+        dragFree: true
+      }"
+    >
       <CarouselContent>
         <CarouselItem v-for="(data, index) in dataList" :key="index" class="basis-[15%]">
           <div class="p-1">
             <Card>
-              <CardContent class="flex aspect-square items-center justify-center p-0">
+              <CardContent class="flex aspect-square items-center justify-center p-0 relative">
                 <img :src="`https://image.tmdb.org/t/p/original/${data.poster_path}`" alt="" />
+
+                <!-- image backdrop -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </CardContent>
+
+              <!-- card footer -->
+              <CardFooter class="px-2 py-4">
+                <div class="flex flex-col mt-5">
+                  <h3 class="text-sm font-semibold truncate">{{ data.title }}</h3>
+                </div>
+              </CardFooter>
             </Card>
           </div>
         </CarouselItem>
@@ -37,4 +52,3 @@ const props = defineProps<{
     </Carousel>
   </div>
 </template>
-@/models/movie.model

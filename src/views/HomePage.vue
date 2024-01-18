@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useAuthStores } from '@/stores/auth.stores'
+
+const authStore = useAuthStores()
+
 const dataMovies = ref([])
 const getMovieLoading = ref(false)
 const getMovieError = ref<null | string>(null)
@@ -28,7 +32,7 @@ const getWatchlistLoading = ref(false)
 const getWatchlistError = ref<null | string>(null)
 const getWatchlist = async () => {
   try {
-    const response = await useHttp.get('/discover/movie')
+    const response = await useHttp.get(`/account/${authStore.authData?.id}/watchlist/movies`)
     dataWatchlist.value = response.data.results
   } catch (error) {
     getMovieError.value = error as string
@@ -47,25 +51,22 @@ onMounted(() => {
     <MainNavbar />
 
     <div class="mt-20">
-      <ListCarousel
+      <WatchlistCarousel
         title="My Watchlist"
         endpoint="/movies?filter=popular"
         :data-list="dataWatchlist"
       />
     </div>
     <div class="mt-20">
-      <ListCarousel
+      <MovieCarousel
         title="Popular Movies"
         endpoint="/movies?filter=popular"
         :data-list="dataMovies"
+        @add-to-watchlist="getWatchlist"
       />
     </div>
     <div class="mt-20">
-      <ListCarousel
-        title="Popular TV Show"
-        endpoint="/movies?filter=popular"
-        :data-list="dataTvs"
-      />
+      <TvCarousel title="Popular TV Show" endpoint="/movies?filter=popular" :data-list="dataTvs" />
     </div>
   </div>
 </template>

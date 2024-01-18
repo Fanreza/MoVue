@@ -7,9 +7,9 @@ export const useAuthStores = defineStore('auth', () => {
 
   const getAuthDetail = async () => {
     try {
-      const response: AuthModel = await useHttp.get('/account/20929006')
+      const response = await useHttp.get('/account/20929006')
 
-      authData.value = response
+      authData.value = response.data as AuthModel
     } catch (error) {
       console.log(error)
     }
