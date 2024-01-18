@@ -1,0 +1,17 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["auto-imports.d.ts", "env.d.ts", "src/**/*", "src/**/*.vue", "components.d.ts"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "allowJs": true,
+    "outDir": "dist",
+    "module": "esnext",
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  }
+}
