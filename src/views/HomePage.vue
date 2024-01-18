@@ -27,22 +27,35 @@ const getTvs = async () => {
   }
 }
 
-const dataWatchlist = ref([])
-const getWatchlistLoading = ref(false)
-const getWatchlistError = ref<null | string>(null)
-const getWatchlist = async () => {
+const dataMovieWatchlist = ref([])
+const getMovieWatchlistLoading = ref(false)
+const getMovieWatchlistError = ref<null | string>(null)
+const getMovieWatchlist = async () => {
   try {
     const response = await useHttp.get(`/account/${authStore.authData?.id}/watchlist/movies`)
-    dataWatchlist.value = response.data.results
+    dataMovieWatchlist.value = response.data.results
   } catch (error) {
     getMovieError.value = error as string
+  }
+}
+
+const dataTvWatchlist = ref([])
+const getTvWatchlistLoading = ref(false)
+const getTvWatchlistError = ref<null | string>(null)
+const getTvWatchlist = async () => {
+  try {
+    const response = await useHttp.get(`/account/${authStore.authData?.id}/watchlist/tv`)
+    dataTvWatchlist.value = response.data.results
+  } catch (error) {
+    getTvError.value = error as string
   }
 }
 
 onMounted(() => {
   getMovies()
   getTvs()
-  getWatchlist()
+  getMovieWatchlist()
+  getTvWatchlist()
 })
 </script>
 
@@ -51,10 +64,19 @@ onMounted(() => {
     <MainNavbar />
 
     <div class="mt-20">
-      <WatchlistCarousel
-        title="My Watchlist"
+      <MovieWatchlistCarousel
+        title="My Movie Watchlist"
         endpoint="/movies?filter=popular"
-        :data-list="dataWatchlist"
+        :data-list="dataMovieWatchlist"
+        @remove-from-watchlist="getMovieWatchlist"
+      />
+    </div>
+    <div class="mt-20">
+      <TvWatchlistCarousel
+        title="My TV Watchlist"
+        endpoint="/movies?filter=popular"
+        :data-list="dataTvWatchlist"
+        @remove-from-watchlist="getTvWatchlist"
       />
     </div>
     <div class="mt-20">
@@ -62,11 +84,16 @@ onMounted(() => {
         title="Popular Movies"
         endpoint="/movies?filter=popular"
         :data-list="dataMovies"
-        @add-to-watchlist="getWatchlist"
+        @add-to-watchlist="getMovieWatchlist"
       />
     </div>
     <div class="mt-20">
-      <TvCarousel title="Popular TV Show" endpoint="/movies?filter=popular" :data-list="dataTvs" />
+      <TvCarousel
+        title="Popular TV Show"
+        endpoint="/movies?filter=popular"
+        :data-list="dataTvs"
+        @add-to-watchlist="getMovieWatchlist"
+      />
     </div>
   </div>
 </template>

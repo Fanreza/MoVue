@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-
-import type { MovieDataModel } from '@/models/movie.model'
-import { Icon } from '@iconify/vue'
+import type { TvWatchlistDataModel } from '@/models/tvWatchlist.model'
 
 const props = defineProps<{
   title?: string
   endpoint?: string
-  dataList: MovieDataModel[]
+  dataList: TvWatchlistDataModel[]
 }>()
 
 const emit = defineEmits<{
-  addToWatchlist: [void]
+  removeFromWatchlist: [void]
 }>()
 </script>
 
@@ -36,7 +32,7 @@ const emit = defineEmits<{
       <CarouselContent>
         <CarouselItem v-for="(data, index) in dataList" :key="index" class="basis-[15%]">
           <div class="p-1">
-            <MovieCard :data="data" @add-to-watchlist="$emit('addToWatchlist')" />
+            <TvWatchlistCard :data="data" @remove-from-watchlist="$emit('removeFromWatchlist')" />
           </div>
         </CarouselItem>
       </CarouselContent>

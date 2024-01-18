@@ -1,11 +1,11 @@
-export interface WatchlistModel {
+export interface MovieWatchlistModel {
   page: number
-  results: WatchlistDataModel[]
+  results: MovieWatchlistDataModel[]
   total_pages: number
   total_results: number
 }
 
-export interface WatchlistDataModel {
+export interface MovieWatchlistDataModel {
   adult: boolean
   backdrop_path: string
   id: number
