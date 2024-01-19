@@ -20,6 +20,12 @@ const router = createRouter({
     },
 
     {
+      path: '/watchlist',
+      name: 'WatchlistPage',
+      component: () => import('../views/WatchlistPage.vue')
+    },
+
+    {
       path: '/search',
       name: 'SearchPage',
       component: () => import('../views/SearchPage.vue')

@@ -18,8 +18,8 @@ const listLink = [
     path: '/tv-shows'
   },
   {
-    name: 'Genre',
-    path: '/genres'
+    name: 'Watchlist',
+    path: '/watchlist'
   }
 ]
 </script>
