@@ -1,6 +1,8 @@
-import type { cn } from '@/lib/utils'; import type { cn } from '@/lib/utils';
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { useWindowSize } from '@vueuse/core'
+
+const { width, height } = useWindowSize()
 
 const listLink = [
   {
@@ -50,6 +52,30 @@ const listLink = [
           />
         </RouterLink>
       </div>
+
+      <!-- Mobile Sheet Nav -->
+      <Sheet class="sm:hidden" v-if="width < 640">
+        <SheetTrigger class="sm:hidden">
+          <Icon icon="mingcute:menu-fill" class="text-2xl" />
+        </SheetTrigger>
+        <SheetContent side="bottom" class="sm:hidden">
+          <SheetHeader>
+            <SheetDescription>
+              <ul class="flex flex-col gap-y-5">
+                <li
+                  v-for="link in listLink"
+                  :key="link.name"
+                  class="font-medium text-white/70 text-lg"
+                >
+                  <router-link :to="link.path" class="hover:text-[#42b883]">
+                    {{ link.name }}
+                  </router-link>
+                </li>
+              </ul>
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
     </div>
   </nav>
 </template>
