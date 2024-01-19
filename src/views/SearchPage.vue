@@ -39,7 +39,7 @@ onMounted(() => {
       <MainNavbar />
 
       <div class="search-content p-10">
-        <div class="searchbar mx-auto w-[50%]">
+        <div class="searchbar mx-auto w-[90%] sm:w-[80%] md:w-[50%]">
           <!-- search bar -->
           <p>You search : {{ searchString }}</p>
           <Input
@@ -50,7 +50,9 @@ onMounted(() => {
           />
         </div>
 
-        <div class="search-result grid grid-cols-8 gap-10 p-10">
+        <div
+          class="search-result grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8 gap-5 p-5 sm:gap-10 sm:p-10"
+        >
           <div class="search-result__item" v-for="item in searchData" :key="item.id">
             <SearchCard :data="item" />
           </div>

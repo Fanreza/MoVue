@@ -72,6 +72,16 @@ const listLink = [
                   </router-link>
                 </li>
               </ul>
+
+              <!-- search bar -->
+              <div class="search-bar flex justify-center mt-5">
+                <RouterLink to="/search">
+                  <Icon
+                    icon="material-symbols:search"
+                    class="text-2xl text-white/70 hover:text-[#42b883]"
+                  />
+                </RouterLink>
+              </div>
             </SheetDescription>
           </SheetHeader>
         </SheetContent>
