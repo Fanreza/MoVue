@@ -30,7 +30,11 @@ const emit = defineEmits<{
       }"
     >
       <CarouselContent>
-        <CarouselItem v-for="(data, index) in dataList" :key="index" class="basis-[15%]">
+        <CarouselItem
+          v-for="(data, index) in dataList"
+          :key="index"
+          class="basis-[50%] xs: sm:basis-[30%] md:basis-[20%] lg:basis-[15%]"
+        >
           <div class="p-1">
             <TvCard :data="data" @add-to-watchlist="$emit('addToWatchlist')" />
           </div>

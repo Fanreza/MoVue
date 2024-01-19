@@ -60,7 +60,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="">
     <MainNavbar />
 
     <div class="mt-20">
