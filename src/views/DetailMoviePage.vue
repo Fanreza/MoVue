@@ -23,11 +23,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="pb-10">
     <MainNavbar />
 
     <div
-      class="flex items-center justify-center mx-auto w-[50%] mt-20 gap-x-20"
+      class="flex flex-col md:flex-row items-center justify-center mx-auto w-[80%] 2xl:w-[50%] mt-20 gap-x-20"
       v-if="dataDetailMovie"
     >
       <div class="image w-[300px]">
@@ -39,12 +39,12 @@ onMounted(() => {
       </div>
 
       <div class="details w-[80%]">
-        <h1 class="text-3xl font-bold">{{ dataDetailMovie?.title }}</h1>
-        <p class="text-base mt-5">{{ dataDetailMovie?.overview }}</p>
+        <h1 class="text-3xl font-bold text-center md:text-left">{{ dataDetailMovie?.title }}</h1>
+        <p class="text-base mt-5 text-center md:text-left">{{ dataDetailMovie?.overview }}</p>
 
         <div class="text-sm opacity-80 mt-10">
           <ul
-            class="grid grid-cols-[max-content_1fr] lg:grid-cols-[max-content_1fr_max-content_1fr] gap-3 items-center"
+            class="grid grid-cols-[max-content_1fr] lg:grid-cols-[max-content_1fr_max-content_1fr] gap-5 md:gap-3 items-center"
           >
             <div>Released</div>
             <div>{{ dataDetailMovie.release_date }}</div>

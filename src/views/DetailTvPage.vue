@@ -27,7 +27,7 @@ onMounted(() => {
     <MainNavbar />
 
     <div
-      class="flex items-center justify-center mx-auto w-[50%] mt-20 gap-x-20"
+      class="flex flex-col md:flex-row items-center justify-center mx-auto w-[80%] 2xl:w-[50%] mt-20 gap-x-20"
       v-if="dataDetailTv"
     >
       <div class="image w-[300px]">
@@ -39,12 +39,12 @@ onMounted(() => {
       </div>
 
       <div class="details w-[80%]">
-        <h1 class="text-3xl font-bold">{{ dataDetailTv?.name }}</h1>
-        <p class="text-base mt-5">{{ dataDetailTv?.overview }}</p>
+        <h1 class="text-3xl font-bold text-center md:text-left">{{ dataDetailTv?.name }}</h1>
+        <p class="text-base mt-5 text-center md:text-left">{{ dataDetailTv?.overview }}</p>
 
         <div class="text-sm opacity-80 mt-10">
           <ul
-            class="grid grid-cols-[max-content_1fr] lg:grid-cols-[max-content_1fr_max-content_1fr] gap-3 items-center"
+            class="grid grid-cols-[max-content_1fr] lg:grid-cols-[max-content_1fr_max-content_1fr] gap-5 md:gap-3 items-center"
           >
             <div>First Air Date</div>
             <div>{{ dataDetailTv.first_air_date }}</div>
